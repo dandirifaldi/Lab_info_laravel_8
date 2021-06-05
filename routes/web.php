@@ -19,5 +19,6 @@ use App\Http\Controllers\ReportController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/license', [LicenseController::class, 'index']);
+Route::get('/license/detail/{id_license}', [LicenseController::class, 'detail']);
 Route::get('/report', [ReportController::class, 'index']);
 Route::get('/users', [UsersController::class, 'index']);

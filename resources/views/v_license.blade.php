@@ -36,7 +36,7 @@
                     <td>{{$data->lcs_name}}</td>
                     <td>{{$data->lcs_email}}</td>
                     <td>
-                    	<a href="#" class="btn btn-sm btn-success">Detail</a>
+                    	<a href="/license/detail/{{$data->id_license}}" class="btn btn-sm btn-success">Detail</a>
                     	<a href="#" class="btn btn-sm btn-warning">Update</a>
                     	<a href="#" class="btn btn-sm btn-danger">Delete</a>
                     </td>
