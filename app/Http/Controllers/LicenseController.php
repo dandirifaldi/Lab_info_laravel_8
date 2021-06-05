@@ -16,4 +16,13 @@ class LicenseController extends Controller
         ];
         return view('v_license', $data);
     }
+    public function detail($id_license){
+        if (!$this->LicenseModel->detailData($id_license)) {
+            abort(404);
+        }
+        $data=[
+            'license'=> $this->LicenseModel->detailData($id_license),
+        ];
+        return view('v_detailLicense',$data);
+    }
 }
