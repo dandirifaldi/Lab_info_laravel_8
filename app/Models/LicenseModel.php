@@ -20,4 +20,7 @@ class LicenseModel extends Model
       return Carbon::parse($this->attributes['exp_date'])
          ->translatedFormat('l, d F Y');
    }
+   public function addData($data){
+    DB::table('tb_license')->insert($data);
+   }
 }

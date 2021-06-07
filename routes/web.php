@@ -18,7 +18,9 @@ use App\Http\Controllers\ReportController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/license', [LicenseController::class, 'index']);
+Route::get('/license', [LicenseController::class, 'index'])->name('license');
 Route::get('/license/detail/{id_license}', [LicenseController::class, 'detail']);
+Route::get('/license/add', [LicenseController::class, 'add']);
+Route::post('/license/insert', [LicenseController::class, 'insert']);
 Route::get('/report', [ReportController::class, 'index']);
 Route::get('/users', [UsersController::class, 'index']);
