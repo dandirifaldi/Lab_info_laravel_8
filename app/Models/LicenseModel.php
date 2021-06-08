@@ -23,4 +23,16 @@ class LicenseModel extends Model
    public function addData($data){
     DB::table('tb_license')->insert($data);
    }
+   public function editData($id_license, $data)
+   {
+      DB::table('tb_license')
+         ->where('id_license',$id_license)
+         ->update($data);
+   }
+   public function deleteData($id_license)
+   {
+      DB::table('tb_license')
+         ->where('id_license',$id_license)
+         ->delete();
+   }
 }

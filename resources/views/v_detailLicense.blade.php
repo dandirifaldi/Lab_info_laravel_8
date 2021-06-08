@@ -56,7 +56,8 @@
 
 	</table>
 	<br>
-<a href="/license" class="btn btn-sm btn-success">Kembali</a><br>
+<a href="/license" class="btn btn-success">Kembali</a>
+<a href="/license/edit/{{$license->id_license}}" class="btn btn-warning">Update Data</a>
 	<br>
 
 @endsection
