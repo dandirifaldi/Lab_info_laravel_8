@@ -8,6 +8,7 @@ use App\Models\LicenseModel;
 class LicenseController extends Controller
 {
     public function __construct(){
+        $this->middleware('auth');
         $this -> LicenseModel= new LicenseModel();
     }
     public function index(){

@@ -16,10 +16,10 @@ class LicenseModel extends Model
       return DB::table('tb_license')->where('id_license',$id_license)->first();
    }
 
-   public function getCreateAtAttributes(){
-      return Carbon::parse($this->attributes['exp_date'])
-         ->translatedFormat('l, d F Y');
-   }
+   // public function getCreateAtAttributes(){
+   //    return Carbon::parse($this->attributes['exp_date'])
+   //       ->translatedFormat('l, d F Y');
+   // }
    public function addData($data){
     DB::table('tb_license')->insert($data);
    }

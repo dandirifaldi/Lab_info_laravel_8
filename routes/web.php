@@ -30,4 +30,14 @@ Route::get('/license/delete/{id_license}', [LicenseController::class, 'delete'])
 //Report
 Route::get('/report', [ReportController::class, 'index']);
 //Users
-Route::get('/users', [UsersController::class, 'index']);
+Route::get('/users', [UsersController::class, 'index'])->name('users');
+Route::get('/users/detail/{id}', [UsersController::class, 'detail']);
+Route::get('/users/add', [UsersController::class, 'add']);
+Route::post('/users/insert', [UsersController::class, 'insert']);
+Route::get('/users/edit/{id}', [UsersController::class, 'edit']);
+Route::post('/users/update/{id}', [UsersController::class, 'update']);
+Route::get('/users/delete/{id}', [UsersController::class, 'delete']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
