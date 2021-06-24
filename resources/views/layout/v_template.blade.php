@@ -24,17 +24,18 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../index3.html" class="nav-link">Home</a>
+        <h3 class="display mt-1">Sistem Inventory Lab Komputer</h3>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
+<!--       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
-      </li>
+      </li> -->
     </ul>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+      
       <!-- Navbar Search -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
           <i class="fas fa-search"></i>
         </a>
@@ -54,25 +55,25 @@
           </form>
         </div>
       </li>
-
+ -->
       <!-- fullscreen -->
-      <li class="nav-item">
+    <!--   <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
-      </li>
+      </li> -->
 
 
       <!-- User Account -->
-          <li class="nav-item dropdown user-menu" style="padding-top: 10px;">
+          <li class="nav-item dropdown user-menu" style="padding-top: 10px; margin-right: 15px;">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{asset('template/')}}/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="{{asset('images/')}}/logo.png" class="user-image" alt="User Image">
               <span class="hidden-xs">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{asset('template/')}}/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="{{asset('images/')}}/logo.png" class="img-circle" alt="User Image">
 
                 <p>
                   {{ Auth::user()->name }}-{{ Auth::user()->email }}
@@ -101,11 +102,11 @@
 
 
 
-      <li class="nav-item">
+<!--       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>
         </a>
-      </li>
+      </li> -->
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -113,8 +114,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="../../index3.html" class="brand-link">
-      <img src="{{asset('template/')}}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="/" class="brand-link">
+      <img src="{{asset('images/')}}/logo-ITI.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Lab Informatika</span>
     </a>
 
@@ -123,15 +124,15 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{asset('template/')}}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="{{asset('images/')}}/logo.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="/profile/{{Auth::user()->id}}" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
       <!-- SidebarSearch Form -->
-      <div class="form-inline">
+      <!-- <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
           <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
           <div class="input-group-append">
@@ -140,7 +141,7 @@
             </button>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- Sidebar Menu -->
       @include('layout.v_nav')
@@ -195,5 +196,23 @@
 <script src="{{asset('template/')}}/dist/js/demo.js"></script>
 <!-- Mask JS -->
 <script src="{{asset('template/')}}/plugins/jquery/jquery.mask.min.js"></script>
+<script type="text/javascript">
+   $(document).ready(function(){
+
+                // Format mata uang.
+                $('.uang').mask('000.000.000.000.000.000', {reverse: true});
+
+            })
+  function hitung()
+      {
+        var harga = (document.getElementById('harga').value == '' ? 0:document.getElementById('harga').value);
+        var jumlah = (document.getElementById('jumlah').value == '' ? 0:document.getElementById('jumlah').value);
+
+        var result = parseInt(harga) * parseInt(jumlah);
+        if (!isNaN(result)) {
+           document.getElementById('total').value = result;
+        }
+      }
+</script>
 </body>
 </html>

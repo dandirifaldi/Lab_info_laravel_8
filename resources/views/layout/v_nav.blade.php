@@ -20,7 +20,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item {{request()->is('/') ? 'active' : ''}}">
-                <a href="../layout/top-nav.html" class="nav-link">
+                <a href="/barang" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>All List</p>
                 </a>

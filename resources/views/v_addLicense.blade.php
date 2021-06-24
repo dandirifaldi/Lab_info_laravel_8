@@ -56,7 +56,7 @@
                   				<div class="input-group-prepend">
                     				<span class="input-group-text">Rp</span>
                   				</div>
-                  				<input type="text" class="form-control @error('purchs_cost') is-invalid @enderror uang" name="purchs_cost" autocomplete="off" value="{{ old('purchs_cost')}}">
+                  				<input type="text" class="form-control @error('purchs_cost') is-invalid @enderror" name="purchs_cost" autocomplete="off" value="{{ old('purchs_cost')}}">
                   				<div class="input-group-append">
                     				<span class="input-group-text">.00</span>
                   				</div>
@@ -129,13 +129,5 @@
             </form>
         </div>
     </div>
-    <script type="text/javascript">
-            $(document).ready(function(){
-
-                // Format mata uang.
-                $('.uang').mask('000.000.000.000.000,00', {reverse: true});
-
-            })
-        </script>
 @endsection
 

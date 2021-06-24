@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LicenseController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +20,7 @@ use App\Http\Controllers\ReportController;
 */
 //Dashboard
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/profile/{id}', [ProfileController::class, 'index']);
 // License
 Route::get('/license', [LicenseController::class, 'index'])->name('license');
 Route::get('/license/detail/{id_license}', [LicenseController::class, 'detail']);
@@ -37,6 +40,23 @@ Route::post('/users/insert', [UsersController::class, 'insert']);
 Route::get('/users/edit/{id}', [UsersController::class, 'edit']);
 Route::post('/users/update/{id}', [UsersController::class, 'update']);
 Route::get('/users/delete/{id}', [UsersController::class, 'delete']);
+
+//Barang Hardware Semua
+Route::get('/barang', [BarangController::class, 'index'])->name('barang');
+Route::get('/barang/detail/{id_barang}', [BarangController::class, 'detail']);
+Route::get('/barang/add', [BarangController::class, 'add']);
+Route::post('/barang/insert', [BarangController::class, 'insert']);
+Route::get('/barang/edit/{id_barang}', [BarangController::class, 'edit']);
+Route::post('/barang/update/{id_barang}', [BarangController::class, 'update']);
+Route::get('/barang/delete/{id_barang}', [BarangController::class, 'delete']);
+//Buku
+// Route::get('/barang', [BarangController::class, 'index_buku'])->name('buku');
+// Route::get('/barang/detail/{id}', [BarangController::class, 'detail']);
+// Route::get('/barang/add', [BarangController::class, 'add']);
+// Route::post('/barang/insert', [BarangController::class, 'insert']);
+// Route::get('/barang/edit/{id_barang}', [BarangController::class, 'edit']);
+// Route::post('/barang/update/{id_barang}', [BarangController::class, 'update']);
+// Route::get('/barang/delete/{id_barang}', [BarangController::class, 'delete']);
 
 Auth::routes();
 
