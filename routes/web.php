@@ -20,7 +20,12 @@ use App\Http\Controllers\ProfileController;
 */
 //Dashboard
 Route::get('/', [HomeController::class, 'index']);
+//Profile
 Route::get('/profile/{id}', [ProfileController::class, 'index']);
+Route::get('/profile/edit/{id}', [ProfileController::class, 'edit']);
+Route::post('/profile/update/{id}', [ProfileController::class, 'update']);
+Route::get('/profile/pass/{id}', [ProfileController::class, 'pass']);
+Route::post('/profile/pass/ganti/{id}', [ProfileController::class, 'ganti']);
 // License
 Route::get('/license', [LicenseController::class, 'index'])->name('license');
 Route::get('/license/detail/{id_license}', [LicenseController::class, 'detail']);
@@ -49,14 +54,22 @@ Route::post('/barang/insert', [BarangController::class, 'insert']);
 Route::get('/barang/edit/{id_barang}', [BarangController::class, 'edit']);
 Route::post('/barang/update/{id_barang}', [BarangController::class, 'update']);
 Route::get('/barang/delete/{id_barang}', [BarangController::class, 'delete']);
+
 //Buku
-// Route::get('/barang', [BarangController::class, 'index_buku'])->name('buku');
-// Route::get('/barang/detail/{id}', [BarangController::class, 'detail']);
-// Route::get('/barang/add', [BarangController::class, 'add']);
-// Route::post('/barang/insert', [BarangController::class, 'insert']);
-// Route::get('/barang/edit/{id_barang}', [BarangController::class, 'edit']);
-// Route::post('/barang/update/{id_barang}', [BarangController::class, 'update']);
-// Route::get('/barang/delete/{id_barang}', [BarangController::class, 'delete']);
+Route::get('/barang/detailBuku/{id_buku}', [BarangController::class, 'detailBuku']);
+Route::get('/barang/addBuku', [BarangController::class, 'addBuku']);
+Route::post('/barang/insertBuku', [BarangController::class, 'insertBuku']);
+Route::get('/barang/editBuku/{id_buku}', [BarangController::class, 'editBuku']);
+Route::post('/barang/updateBuku/{id_buku}', [BarangController::class, 'updateBuku']);
+Route::get('/barang/deleteBuku/{id_buku}', [BarangController::class, 'deleteBuku']);
+
+//Furniture
+Route::get('/barang/detailFurniture/{id_furniture}', [BarangController::class, 'detailFurniture']);
+Route::get('/barang/addFurniture', [BarangController::class, 'addFurniture']);
+Route::post('/barang/insertFurniture', [BarangController::class, 'insertFurniture']);
+Route::get('/barang/editFurniture/{id_furniture}', [BarangController::class, 'editFurniture']);
+Route::post('/barang/updateFurniture/{id_furniture}', [BarangController::class, 'updateFurniture']);
+Route::get('/barang/deleteFurniture/{id_furniture}', [BarangController::class, 'deleteFurniture']);
 
 Auth::routes();
 

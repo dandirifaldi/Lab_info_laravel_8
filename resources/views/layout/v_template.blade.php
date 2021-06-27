@@ -77,7 +77,7 @@
 
                 <p>
                   {{ Auth::user()->name }}-{{ Auth::user()->email }}
-                  <small>Member since Nov. 2012</small>
+                  <!-- <small>Member since Nov. 2012</small> -->
                 </p>
               </li>
                 <!-- /.row -->
@@ -85,7 +85,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="float-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="/profile/{{Auth::user()->id}}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="float-right">
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" class="">

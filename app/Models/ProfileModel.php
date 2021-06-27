@@ -15,4 +15,16 @@ class ProfileModel extends Model
         ->where('id','=',$id)
         ->first();
    }
+   public function editProfile($id, $data)
+   {
+      DB::table('users')
+         ->where('id',$id)
+         ->update($data);
+   }
+   public function editPass($id, $data)
+   {
+      DB::table('users')
+         ->where('id',$id)
+         ->update($data);
+   }
 }

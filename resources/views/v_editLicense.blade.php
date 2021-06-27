@@ -88,7 +88,7 @@
 		           		 <div class="form-group">
                        		<label>Software Category</label>
                         	<select class="custom-select" name="category" value="{{ old('category')}}">
-                          		<option value="Other" selected="">Other</option>
+                          		<option value="Other" {{($license->category === "Other") ? 'selected' : ''}}>Other</option>
                           		<option value="Office Software" {{($license->category === "Office Software") ? 'selected' : ''}}>Office Software</option>
                           		<option value="Graphic Software" {{($license->category === "Graphic Software") ? 'selected' : ''}}>Graphic Software</option>
                           		<option value="Programming Software" {{($license->category === "Programming Software") ? 'selected' : ''}}>Programming Software</option>

@@ -32,24 +32,79 @@ class BarangModel extends Model
       ->first();
    }
 
+   public function editData($id_barang, $data)
+   {
+      DB::table('tb_barang')
+         ->where('id_barang',$id_barang)
+         ->update($data);
+   }
+   public function editDataDetail($id_barang, $data)
+   {
+      DB::table('tb_detail_beli')
+         ->where('id_barang',$id_barang)
+         ->update($data);
+   }
    public function deleteData($id_barang){
       DB::table('tb_barang')
          ->where('id_barang',$id_barang)
          ->delete();
    }
+   public function deleteDataDetail($id_barang){
+      DB::table('tb_detail_beli')
+         ->where('id_barang',$id_barang)
+         ->delete();
+   }
 
-   // BUKU
+   // BUKU----------------------------------------------------------------------------------------------
     public function allDataBuku(){
         return DB::table('tb_buku')
         ->leftJoin('tb_status','tb_buku.id_status','=','tb_status.id_status')
         ->get();
    }
+    public function addDataBuku($data){
+    DB::table('tb_buku')->insert($data);
+   }
+   public function detailDataBuku($id_buku){
+      return DB::table('tb_buku')
+      ->join('tb_status','tb_buku.id_status','=','tb_status.id_status')
+      ->first();
+   }
+    public function deleteDataBuku($id_buku){
+      DB::table('tb_buku')
+         ->where('id_buku',$id_buku)
+         ->delete();
+   }
+    public function editDataBuku($id_buku, $data)
+   {
+      DB::table('tb_buku')
+         ->where('id_buku',$id_buku)
+         ->update($data);
+   }
 
-   // FURNITURE
+   // FURNITURE-----------------------------------------------------------------------------------------
     public function allDataFurniture(){
         return DB::table('tb_furniture')
         ->leftJoin('tb_status','tb_furniture.id_status','=','tb_status.id_status')
         ->get();
+   }
+    public function addDataFurniture($data){
+    DB::table('tb_furniture')->insert($data);
+   }
+   public function detailDataFurniture($id_furniture){
+      return DB::table('tb_furniture')
+      ->join('tb_status','tb_furniture.id_status','=','tb_status.id_status')
+      ->first();
+   }
+    public function deleteDataFurniture($id_furniture){
+      DB::table('tb_furniture')
+         ->where('id_furniture',$id_furniture)
+         ->delete();
+   }
+    public function editDataFurniture($id_furniture, $data)
+   {
+      DB::table('tb_furniture')
+         ->where('id_furniture',$id_furniture)
+         ->update($data);
    }
    
 }

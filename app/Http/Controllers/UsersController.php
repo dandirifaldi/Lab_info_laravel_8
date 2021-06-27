@@ -9,7 +9,7 @@ use Illuminate\Support\Carbon;
 class UsersController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth');
+        // $this->middleware('auth');
         $this -> UsersModel= new UsersModel();
     }
     public function index(){
@@ -68,7 +68,7 @@ class UsersController extends Controller
         Request()->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            // 'password' => ['required', 'string', 'min:8', 'confirmed'],
+            // 'password' => ['required', 'string', 'min:8', 'confirmed']
         ],[
             'name.required'=> 'Kolom ini Wajib Diisi !!!', 
             'email.required'=> 'Kolom ini Wajib Diisi !!!',

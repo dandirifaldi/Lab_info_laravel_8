@@ -162,13 +162,13 @@
                     <td>{{$data1->judul}}</td>
                     <td>{{$data1->penulis}}</td>
                     <td>{{$data1->tahun}}</td>
-                    <td>{{$data1->type}}</td>
+                    <td>{{$data1->tipe}}</td>
                     <td>{{$data1->kondisi}}</td>
                     <td>{{$data1->tgl_masuk}}</td>
                     <td>{{$data1->status}}</td>
                     <td>
-                      <a href="/barang/detail/{{$data1->id_buku}}" class="btn btn-sm btn-success">Detail</a>
-                      <a href="/barang/edit/{{$data1->id_buku}}" class="btn btn-sm btn-warning">Update</a>
+                      <a href="/barang/detailBuku/{{$data1->id_buku}}" class="btn btn-sm btn-success">Detail</a>
+                      <a href="/barang/editBuku/{{$data1->id_buku}}" class="btn btn-sm btn-warning">Update</a>
                       <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete{{$data1->id_buku}}">
                   Delete
                 </button>
@@ -198,11 +198,11 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>Apakah Anda ingin menghapus data buku {{$data1->judul}} oleh {{$data->penulis}} ini?</p>
+              <p>Apakah Anda ingin menghapus data buku {{$data1->judul}} oleh {{$data1->penulis}} ini?</p>
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-outline-light" data-dismiss="modal">Tidak Ingin</button>
-              <a href="barang/delete/{{$data1->id_buku}}" type="button" class="btn btn-outline-light">Tentu Saja Iya</a>
+              <a href="barang/deleteBuku/{{$data1->id_buku}}" type="button" class="btn btn-outline-light">Tentu Saja Iya</a>
             </div>
           </div>
           <!-- /.modal-content -->
@@ -217,7 +217,7 @@
 <div id="furniture" class="tab-pane fade show">
 <div class="container-fluid">
     <br>
-    <a href="/barang/addLain" class="btn btn-sm btn-primary">Tambah Barang</a><br><br>
+    <a href="/barang/addFurniture" class="btn btn-sm btn-primary">Tambah Barang</a><br><br>
     @if (session('pesanTambah'))
       <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Sukses!!</strong> Data Berhasil Ditambahkan.
@@ -266,8 +266,8 @@
                     <td>{{$data2->tgl_masuk}}</td>
                     <td>{{$data2->status}}</td>
                     <td>
-                      <a href="/barang/detail/{{$data2->id_furniture}}" class="btn btn-sm btn-success">Detail</a>
-                      <a href="/barang/edit/{{$data2->id_furniture}}" class="btn btn-sm btn-warning">Update</a>
+                      <a href="/barang/detailFurniture/{{$data2->id_furniture}}" class="btn btn-sm btn-success">Detail</a>
+                      <a href="/barang/editFurniture/{{$data2->id_furniture}}" class="btn btn-sm btn-warning">Update</a>
                       <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete{{$data2->id_furniture}}">
                   Delete
                 </button>
@@ -297,11 +297,11 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>Apakah Anda ingin menghapus data barang {{$data2->merrk}} ini?</p>
+              <p>Apakah Anda ingin menghapus data barang {{$data2->merk}} ini?</p>
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-outline-light" data-dismiss="modal">Tidak Ingin</button>
-              <a href="barang/delete/{{$data2->id_furniture}}" type="button" class="btn btn-outline-light">Tentu Saja Iya</a>
+              <a href="barang/deleteFurniture/{{$data2->id_furniture}}" type="button" class="btn btn-outline-light">Tentu Saja Iya</a>
             </div>
           </div>
           <!-- /.modal-content -->

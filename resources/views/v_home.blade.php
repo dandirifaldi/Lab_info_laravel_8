@@ -2,12 +2,20 @@
 @section('title','Dashboard')
 
 @section('content')
+@if(session('pesanUpdate'))
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Sukses!!</strong> Data Berhasil Diupdate.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    @endif
 	<div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>0</h3>
+                <h3>{{$barang}}</h3>
 
                 <p>Total Barang</p>
               </div>
@@ -22,7 +30,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>0<sup style="font-size: 20px"></sup></h3>
+                <h3>{{$license}}<sup style="font-size: 20px"></sup></h3>
 
                 <p>Total Lisensi</p>
               </div>
