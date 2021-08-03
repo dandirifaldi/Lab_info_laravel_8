@@ -14,7 +14,7 @@
             	<div class="row">
                 	<div class="col-sm-6">
                 		<div class="form-group">
-                    		<label for="merk">Merk</label>
+                    		<label for="merk">Merk<span style="color: red;">*</span></label>
                     		<input type="text" name="merk" class="form-control form-control-sm @error('merk') is-invalid @enderror" id="merk" placeholder="Masukan Merk" autocomplete="off" value="{{ $furniture->merk}}">
                     		<div class="invalid-feedback">
         						@error('merk')
@@ -23,7 +23,7 @@
       						</div>
 		                </div>
 		            	<div class="form-group">
-                    		<label for="jumlah">Jumlah</label>
+                    		<label for="jumlah">Jumlah<span style="color: red;">*</span></label>
                     		<input type="number" class="form-control form-control-sm @error('jumlah') is-invalid @enderror" id="jumlah" placeholder="Masukan Jumlah " name="jumlah" autocomplete="off" value="{{ $furniture->jumlah}}">
                     		<div class="invalid-feedback">
         						@error('jumlah')
@@ -32,7 +32,7 @@
       						</div>
 		            	</div>
 		           		<div class="form-group">
-                 		 	<label>Tanggal Masuk </label>
+                 		 	<label>Tanggal Masuk <span style="color: red;">*</span></label>
                    		 	<div class="input-group date" id="tgl_masuk" data-target-input="nearest">
                         	<input type="date" class="form-control form-control-sm datetimepicker-input @error('tgl_masuk') is-invalid @enderror" data-target="#tgl_masuk"/ name="tgl_masuk" autocomplete="off" value="{{ $furniture->tgl_masuk}}">
                         	<div class="input-group-append" data-target="#tgl_masuk" data-toggle="datetimepicker">
@@ -71,7 +71,7 @@
 
                 	<div class="col-sm-6">
                 		<div class="form-group">
-                       		<label>Kategori</label>
+                       		<label>Kategori<span style="color: red;">*</span></label>
                         	<select class=" form-control form-control-sm" name="category">
                           		<option value="Other" {{($furniture->category === "Other") ? 'selected' : ''}}>Other</option>
                           		<option value="Meja" {{($furniture->category === "Meja") ? 'selected' : ''}}>Meja</option>
@@ -99,7 +99,7 @@
                 			
                 		</div> -->
                 		<div class="form-group">
-                    		<label for="lok">Lokasi Barang</label>
+                    		<label for="lok">Lokasi Barang<span style="color: red;">*</span></label>
                     		<input type="text" name="lok" class="form-control form-control-sm @error('lok') is-invalid @enderror" id="lok" placeholder="Barang Ingin Disimpan di ..." autocomplete="off" value="{{ $furniture->lokasi}}">
                     		<div class="invalid-feedback">
         						@error('lok')

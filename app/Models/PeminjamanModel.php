@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
-class BarangModel extends Model
+class PeminjamanModel extends Model
 {
-    public function allData(){
-        return DB::table('tb_barang')
+    public function Dipinjam(){
+        return DB::table('tb_peminjaman')
         ->Join('tb_status','tb_barang.id_status','=','tb_status.id_status')
         ->paginate(10);
    }
-   public function allDatad(){
+   public function Kembaili(){
         return DB::getPdo()->lastInsertId();
         // ->get();
    }

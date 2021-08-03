@@ -2,6 +2,8 @@
 @section('title','Detail Barang')
 
 @section('content')
+<div class="row">
+	<div class="col-sm-6">
 	<table class="table table-sm" style="width: 500px;">
 		<tr>
 			<td class="font-weight-bold" scope="row">ID Barang</td>
@@ -60,6 +62,16 @@
 		</tr>
 
 	</table>
+</div>
+	<div class="col-sm-6">
+		<div class="float-right mr-4">
+                {{ $qr}}
+        <div class="">
+         <a href="print_qr/{{$barang->id_barang}}">Print Qr</a>
+        </div>
+        </div>
+	</div>
+</div>
 	<h3>Detail Pembelian Barang</h3>
 	<table class="table table-sm" style="width: 800px;">
 		<tr>

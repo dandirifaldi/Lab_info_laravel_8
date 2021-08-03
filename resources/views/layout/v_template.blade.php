@@ -214,5 +214,163 @@
         }
       }
 </script>
+<script>
+    $(function(e){
+      $("#chkCheckAll").on('click',function(){
+        var isChecked = $("#chkCheckAll").prop('checked')
+        $(".checkBoxClass").prop('checked',isChecked)
+        $("#pilih-perintah").prop('disabled',!isChecked);          
+        $("#pilih-perintah2").prop('disabled',!isChecked);          
+        $("#pilih-perintah3").prop('disabled',!isChecked);          
+      })
+      $("#chkCheckAllBook").on('click',function(){
+        var isChecked = $("#chkCheckAllBook").prop('checked')
+        $(".checkBoxBook").prop('checked',isChecked);
+        $("#pilih-perintah").prop('disabled',!isChecked);          
+        $("#pilih-perintah2").prop('disabled',!isChecked);          
+        $("#pilih-perintah3").prop('disabled',!isChecked);          
+      })
+      $("#chkCheckAllFurniture").on('click',function(){
+        var isChecked = $("#chkCheckAllFurniture").prop('checked')
+        $(".checkBoxFurniture").prop('checked',isChecked);
+        $("#pilih-perintah").prop('disabled',!isChecked);
+        $("#pilih-perintah2").prop('disabled',!isChecked);
+        $("#pilih-perintah3").prop('disabled',!isChecked);
+      })
+
+
+      $("#example2 tbody").on('click','.checkBoxClass',function(){
+        if ($(this).prop('checked')!=true){
+          $("#chkCheckAll").prop('checked',false)
+          $("#pilih-perintah").prop('disabled',true);
+          $("#pilih-perintah2").prop('disabled',true);
+          $("#pilih-perintah3").prop('disabled',true);
+        }
+        let semua_chckbox = $("#example2 tbody .checkBoxClass:checked")
+        let button_status=(semua_chckbox.length>0)
+        $("#pilih-perintah").prop('disabled',!button_status)
+        $("#pilih-perintah2").prop('disabled',!button_status)
+        $("#pilih-perintah3").prop('disabled',!button_status)
+      })
+
+       $("#examplebook tbody").on('click','.checkBoxBook',function(){
+        if ($(this).prop('checked')!=true){
+          $("#chkCheckAllBook").prop('checked',false)
+        }let semua_chckbox = $("#examplebook tbody .checkBoxBook:checked")
+        let button_status=(semua_chckbox.length>0)
+        $("#pilih-perintah").prop('disabled',!button_status)
+        $("#pilih-perinta2").prop('disabled',!button_status)
+        $("#pilih-perinta3").prop('disabled',!button_status)
+      })
+        $("#examplefurniture tbody").on('click','.checkBoxFurniture',function(){
+        if ($(this).prop('checked')!=true){
+          $("#chkCheckAllFurniture").prop('checked',false)
+        }let semua_chckbox = $("#examplefurniture tbody .checkBoxFurniture:checked")
+        let button_status=(semua_chckbox.length>0)
+        $("#pilih-perintah").prop('disabled',!button_status)
+        $("#pilih-perinta2").prop('disabled',!button_status)
+        $("#pilih-perinta3").prop('disabled',!button_status)
+      })
+    });
+
+    function btn_perintah_maintenance() {
+        // var valuePerintah = document.getElementById("perintah").value;
+        let checkboxTerpilih  = $("#example2 tbody .checkBoxClass:checked")
+        let semua_id= []
+        $.each(checkboxTerpilih,function(index,elm){
+          semua_id.push(elm.value)
+        })
+        console.log(semua_id);
+        // console.log(valuePerintah);
+        $("#pilih-perintah").prop("disabled",true)
+        // var data = JSON.stringify({ 
+        //          'ids': semua_id,
+        //          'pilih':valuePerintah
+        //        });
+        $.ajax({
+          url:"{{url('')}}/barang/update_status_maintenance",
+          type:"post",
+          data: {ids:semua_id},
+          success:function(){
+            console.log("Added");
+            location.reload();
+          }
+        })
+      }
+
+function btn_perintah_rusak() {
+        // var valuePerintah = document.getElementById("perintah").value;
+        let checkboxTerpilih  = $("#example2 tbody .checkBoxClass:checked")
+        let semua_id= []
+        $.each(checkboxTerpilih,function(index,elm){
+          semua_id.push(elm.value)
+        })
+        console.log(semua_id);
+        // console.log(valuePerintah);
+        $("#pilih-perintah").prop("disabled",true)
+        // var data = JSON.stringify({ 
+        //          'ids': semua_id,
+        //          'pilih':valuePerintah
+        //        });
+        $.ajax({
+          url:"{{url('')}}/barang/update_status_rusak",
+          type:"post",
+          data: {ids:semua_id},
+          success:function(){
+            console.log("Added");
+            location.reload();
+          }
+        })
+      }
+function btn_perintah_bagus() {
+        // var valuePerintah = document.getElementById("perintah").value;
+        let checkboxTerpilih  = $("#example2 tbody .checkBoxClass:checked")
+        let semua_id= []
+        $.each(checkboxTerpilih,function(index,elm){
+          semua_id.push(elm.value)
+        })
+        console.log(semua_id);
+        // console.log(valuePerintah);
+        $("#pilih-perintah").prop("disabled",true)
+        // var data = JSON.stringify({ 
+        //          'ids': semua_id,
+        //          'pilih':valuePerintah
+        //        });
+        $.ajax({
+          url:"{{url('')}}/barang/update_status_bagus",
+          type:"post",
+          data: {ids:semua_id},
+          success:function(){
+            console.log("Added");
+            location.reload();
+          }
+        })
+      }
+      // $("#form").submit(function(e) {
+      //   e.preventDefault();
+      //   // var form_input = form.serializeArray();
+      //   let checkboxTerpilih  = $("#example2 tbody .checkBoxClass:checked")
+      //   let semua_id= []
+      //   $.each(checkboxTerpilih,function(index,elm){
+      //     semua_id.push(elm.value)
+      //   })
+      //   // form_input.push({
+      //   // name: '_token',
+      //   // value: '{{csrf_token()}}'
+      //   // });
+      //   // form_input.push({
+      //   // name: 'hash',
+      //   // value: 9999
+      //   // });
+      //   $.ajax({
+      //   url : '{{url('')}}/barang/update_status',
+      //   type: "POST",
+      //   data: {ids:semua_id}, 
+      //   success : function () {
+      //       console.log("Added");
+      //   }
+      // })
+      // });
+</script>
 </body>
 </html>

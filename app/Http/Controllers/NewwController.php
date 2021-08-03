@@ -3,73 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\BarangModel;
-use App\Exports\BarangExport;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
-use Illuminate\Support\Facades\DB;
-use Maatwebsite\Excel\Facades\Excel;
-use PDF;
-// use App\Http\Controllers\BarangExport;
+use App\Models\NewwModel;
 
-class BarangController extends Controller
+class NewwController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
-        $this -> BarangModel= new BarangModel();
+        $this -> NewwModel= new NewwModel();
     }
 
 // BARANG HARDWARE-------------------------------------------------------------------------------------
     public function index(){
-        $data=$this->BarangModel->allData();
-        $dataBuku=$this->BarangModel->allDataBuku();
-        $dataFurniture=$this->BarangModel->allDataFurniture();
-        return view('v_barang', ['barang'=>$data, 'buku'=>$dataBuku, 'furniture'=>$dataFurniture]);
+        $data=$this->NewwModel->allData();
+        $dataBuku=$this->NewwModel->allDataBuku();
+        $dataFurniture=$this->NewwModel->allDataFurniture();
+        return view('v_barangBaru', ['barang'=>$data, 'buku'=>$dataBuku, 'furniture'=>$dataFurniture]);
     }
 
     public function add(){
         return view('v_addBarang');
     }
     
-    public function export_excel()
-    {
-        return Excel::download(new BarangExport, 'allDataBarang.xlsx');
-    }
-    public function print_qr($id_barang)
-    {
-        $data=$this->BarangModel->detailData($id_barang);
-        $arr=get_object_vars($data);
-        // $arr1=array_values($arr);
-        $qrcode= QrCode::size(100)->generate(implode(",",$arr));
-        // var_dump($qrcode);
-        // die();
-        $pdf = PDF::loadview('v_qrBarang',['barang'=>$data,'qr'=>$qrcode]);
-        return $pdf->download('QrcodeBarang.pdf');
-    }
-    public function search(Request $request)
-    {
-        // menangkap data pencarian
-        $cari = $request->cari;
-        $dataBuku=$this->BarangModel->allDataBuku();
-        $dataFurniture=$this->BarangModel->allDataFurniture();
-            // mengambil data dari table pegawai sesuai pencarian data
-        $data = DB::table('tb_barang')
-        ->Join('tb_status','tb_barang.id_status','=','tb_status.id_status')
-        ->where('serial_number','like',"%".$cari."%")
-        // ->orWhere('soft_name','like',"%".$cari."%")
-        ->orWhere('manufacturer','like',"%".$cari."%")
-        ->orWhere('type','like',"%".$cari."%")
-        ->orWhere('kondisi','like',"%".$cari."%")
-        ->orWhere('category','like',"%".$cari."%")
-        ->orWhere('tgl_masuk','like',"%".$cari."%")
-        ->orWhere('status','like',"%".$cari."%")
-        ->paginate(10);
- 
-            // mengirim data pegawai ke view index
-        return view('v_searchBarang',['barang' => $data,'buku'=>$dataBuku, 'furniture'=>$dataFurniture]);
- 
-    }
-
     public function insert(){
         Request()->validate([
             'serial' => 'required',
@@ -122,20 +77,11 @@ class BarangController extends Controller
         if (!$this->BarangModel->detailData($id_barang)) {
             abort(404);
         }
-        $data=$this->BarangModel->detailData($id_barang);
-        $arr=get_object_vars($data);
-        // $arr1=array_values($arr);
-        // var_dump($arr1);
-        // die();
-        $qrcode= QrCode::size(200)->generate(implode(",",$arr));
-        return view('v_DetailBarangHard',['barang'=>$data,'qr'=>$qrcode]);
+        $data=[
+            'barang'=> $this->BarangModel->detailData($id_barang)
+        ];
+        return view('v_DetailBarangHard',$data);
     }
-    //QR CODE-----------------------------------------------------------------------------------------
-    // public function generate($id)
-    // {
-        // $data=Data::findOrFail($id_barang);
-    // }
-    //------------------------------------------------------------------------------------------------
 
     public function edit($id_barang){
         if (!$this->BarangModel->detailData($id_barang)) {
@@ -203,83 +149,13 @@ class BarangController extends Controller
         return redirect()->route('barang')->with('pesanDelete','Data Berhasil Dihapus !!!');
     }
 
-    public function update_status(Request $request){
-        //Jika validasi oke lanjut simpan data
-        $id_barang = $request->ids;
-        // dd($id_barang);
-        $valuePerintah = $request->perintah;
-        if ($valuePerintah == 'maintenance') {
-            $data = [
-            'kondisi' => 'Maintenance'
-            ];
-        }
-         if ($valuePerintah == 'bagus') {
-            $data = [
-            'kondisi' => 'Baik'
-            ];
-        } 
-         if ($valuePerintah == 'rusak') {
-            $data = [
-            'kondisi' => 'Rusak'
-            ];
-        }
-        // dd($valuePerintah);
-        // BarangModel::whereIn('id_barang',[$request->ids])->update($data);
-        $this->BarangModel->editDataStatus($id_barang, $data);
-        return redirect()->route('barang')->with('pesanUpdate','Data Berhasil Diupdate !!!');
-    }
-    public function update_status_maintenance(Request $request){
-        $id_barang = $request->ids;
-        $data =['kondisi'=> 'Maintenance'];
-        // dd($id_barang);
-        // BarangModel::whereIn('id_barang',$request->ids)->update(['kondisi'=>'Maintenance']);
-        $this->BarangModel->editDataStatus($id_barang, $data);
-        return redirect()->route('barang')->with('pesanUpdate','Data Berhasil Diupdate !!!');
-    }
-    public function update_status_rusak(Request $request){
-        $id_barang = $request->ids;
-        $data =['kondisi'=> 'Rusak'];
-        // dd($id_barang);
-        // BarangModel::whereIn('id_barang',$request->ids)->update(['kondisi'=>'Maintenance']);
-        $this->BarangModel->editDataStatus($id_barang, $data);
-        return redirect()->route('barang')->with('pesanUpdate','Data Berhasil Diupdate !!!');
-    }
-    public function update_status_bagus(Request $request){
-        $id_barang = $request->ids;
-        $data =['kondisi'=> 'Baik'];
-        // dd($id_barang);
-        // BarangModel::whereIn('id_barang',$request->ids)->update(['kondisi'=>'Maintenance']);
-        $this->BarangModel->editDataStatus($id_barang, $data);
-        return redirect()->route('barang')->with('pesanUpdate','Data Berhasil Diupdate !!!');
-    }
+
     //BUKU----------------------------------------------------------------------------------------------
 
     public function addBuku(){
         return view('v_addBuku');
     }
 
-    public function searchBuku(Request $request)
-    {
-        // menangkap data pencarian
-        $cari = $request->cari;
-        $data=$this->BarangModel->allData();
-        $dataFurniture=$this->BarangModel->allDataFurniture();
-            // mengambil data dari table pegawai sesuai pencarian data
-        $dataBuku = DB::table('tb_buku')
-        ->Join('tb_status','tb_buku.id_status','=','tb_status.id_status')
-        ->where('judul','like',"%".$cari."%")
-        ->orWhere('penulis','like',"%".$cari."%")
-        ->orWhere('tahun','like',"%".$cari."%")
-        ->orWhere('tipe','like',"%".$cari."%")
-        ->orWhere('kondisi','like',"%".$cari."%")
-        ->orWhere('tgl_masuk','like',"%".$cari."%")
-        ->orWhere('status','like',"%".$cari."%")
-        ->paginate(10);
- 
-            // mengirim data pegawai ke view index
-        return view('v_searchBarang',['barang' => $data,'buku'=>$dataBuku, 'furniture'=>$dataFurniture]);
- 
-    }
     public function insertBuku(){
         Request()->validate([
             'judul' => 'required',
@@ -390,26 +266,6 @@ class BarangController extends Controller
         return view('v_addFurniture');
     }
 
-    public function searchFurniture(Request $request)
-    {
-        // menangkap data pencarian
-        $cari = $request->cari;
-        $dataBuku=$this->BarangModel->allDataBuku();
-        $data=$this->BarangModel->allData();
-            // mengambil data dari table pegawai sesuai pencarian data
-        $dataFurniture = DB::table('tb_furniture')
-        ->Join('tb_status','tb_furniture.id_status','=','tb_status.id_status')
-        ->where('merk','like',"%".$cari."%")
-        ->orWhere('category','like',"%".$cari."%")
-        ->orWhere('kondisi','like',"%".$cari."%")
-        ->orWhere('tgl_masuk','like',"%".$cari."%")
-        ->orWhere('status','like',"%".$cari."%")
-        ->paginate(10);
- 
-            // mengirim data pegawai ke view index
-        return view('v_searchBarang',['barang' => $data,'buku'=>$dataBuku, 'furniture'=>$dataFurniture]);
- 
-    }
     public function insertFurniture(){
         Request()->validate([
             'merk' => 'required',

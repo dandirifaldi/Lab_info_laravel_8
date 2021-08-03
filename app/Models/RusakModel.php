@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
-class BarangModel extends Model
+class RusakModel extends Model
 {
     public function allData(){
         return DB::table('tb_barang')
+        ->where('tb_barang.kondisi','=','Rusak')
         ->Join('tb_status','tb_barang.id_status','=','tb_status.id_status')
         ->paginate(10);
    }
@@ -54,15 +55,11 @@ class BarangModel extends Model
          ->where('id_barang',$id_barang)
          ->delete();
    }
-   public function editDataStatus($id_barang, $data)
-   {
-      DB::table('tb_barang')
-         ->whereIn('id_barang',$id_barang)
-         ->update($data);
-   }
+
    // BUKU----------------------------------------------------------------------------------------------
     public function allDataBuku(){
         return DB::table('tb_buku')
+        ->where('tb_buku.kondisi','=','Rusak')
         ->leftJoin('tb_status','tb_buku.id_status','=','tb_status.id_status')
         ->paginate(10);
    }
@@ -89,6 +86,7 @@ class BarangModel extends Model
    // FURNITURE-----------------------------------------------------------------------------------------
     public function allDataFurniture(){
         return DB::table('tb_furniture')
+        ->where('tb_furniture.kondisi','=','Rusak')
         ->leftJoin('tb_status','tb_furniture.id_status','=','tb_status.id_status')
         ->paginate(10);
    }

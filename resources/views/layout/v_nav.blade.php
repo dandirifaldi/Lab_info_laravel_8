@@ -25,26 +25,26 @@
                   <p>All List</p>
                 </a>
               </li>
-              <li class="nav-item {{request()->is('/') ? 'active' : ''}}">
-                <a href="../layout/top-nav-sidebar.html" class="nav-link">
+              <li class="nav-item {{request()->is('/bagus') ? 'active' : ''}}">
+                <a href="/bagus" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Good Items</p>
                 </a>
               </li>
               <li class="nav-item {{request()->is('/') ? 'active' : ''}}">
-                <a href="../layout/boxed.html" class="nav-link">
+                <a href="/rusak" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Not Good Items</p>
                 </a>
               </li>
               <li class="nav-item {{request()->is('/') ? 'active' : ''}}">
-                <a href="../layout/fixed-sidebar.html" class="nav-link">
+                <a href="/maintenance" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Maintenance Items</p>
                 </a>
               </li>
               <li class="nav-item {{request()->is('/') ? 'active' : ''}}">
-                <a href="../layout/fixed-sidebar-custom.html" class="nav-link">
+                <a href="/new" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>New Items</p>
                 </a>
@@ -65,6 +65,36 @@
               </p>
             </a>
           </li>
+
+          <!-- <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Transaksi
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item {{request()->is('/pinjam') ? 'active' : ''}}">
+                <a href="/pinjam" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Peminjaman</p>
+                </a>
+              </li>
+              <li class="nav-item {{request()->is('/kembali') ? 'active' : ''}}">
+                <a href="/kembali" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Telah Kembali</p>
+                </a>
+              </li>
+              <li class="nav-item {{request()->is('/waktu') ? 'active' : ''}}">
+                <a href="/waktu" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Lewat Batas Waktu</p>
+                </a>
+              </li>
+            </ul>
+          </li> -->
           <li class="nav-item {{request()->is('users') ? 'active' : ''}}">
             <a href="/users" class="nav-link">
               <i class="nav-icon far fa-image"></i>

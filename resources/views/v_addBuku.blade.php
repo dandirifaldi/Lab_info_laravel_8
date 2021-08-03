@@ -14,7 +14,7 @@
             	<div class="row">
                 	<div class="col-sm-6">
                 		<div class="form-group">
-                    		<label for="judul">Judul</label>
+                    		<label for="judul">Judul<span style="color: red;">*</span></label>
                     		<input type="text" name="judul" class="form-control form-control-sm @error('judul') is-invalid @enderror" id="judul" placeholder="Masukan Judul Buku" autocomplete="off" value="{{ old('judul')}}">
                     		<div class="invalid-feedback">
         						@error('judul')
@@ -23,7 +23,7 @@
       						</div>
 		                </div>
                   		<div class="form-group">
-                    		<label for="tahun">Tahun</label>
+                    		<label for="tahun">Tahun<span style="color: red;">*</span></label>
                     		<input type="text" class="form-control form-control-sm @error('tahun') is-invalid @enderror" id="tahun" placeholder="Masukan Tahun " name="tahun" autocomplete="off" value="{{ old('tahun')}}">
                     		<div class="invalid-feedback">
         						@error('tahun')
@@ -32,7 +32,7 @@
       						</div>
 		            	</div>
 		            	<div class="form-group">
-                    		<label for="jumlah">Jumlah Buku</label>
+                    		<label for="jumlah">Jumlah Buku<span style="color: red;">*</span></label>
                     		<input type="number" class="form-control form-control-sm @error('jumlah') is-invalid @enderror" id="jumlah" placeholder="Masukan Jumlah Buku" name="jumlah" autocomplete="off" value="{{ old('jumlah')}}">
                     		<div class="invalid-feedback">
         						@error('jumlah')
@@ -41,7 +41,7 @@
       						</div>
 		            	</div>
 		           		<div class="form-group">
-                 		 	<label>Tanggal Masuk </label>
+                 		 	<label>Tanggal Masuk<span style="color: red;">*</span> </label>
                    		 	<div class="input-group date" id="tgl_masuk" data-target-input="nearest">
                         	<input type="date" class="form-control form-control-sm datetimepicker-input @error('tgl_masuk') is-invalid @enderror" data-target="#tgl_masuk"/ name="tgl_masuk" autocomplete="off" value="{{ old('tgl_masuk')}}">
                         	<div class="input-group-append" data-target="#tgl_masuk" data-toggle="datetimepicker">
@@ -80,7 +80,7 @@
 
                 	<div class="col-sm-6">
                 		<div class="form-group">
-                    		<label for="penulis">Penulis Buku</label>
+                    		<label for="penulis">Penulis Buku<span style="color: red;">*</span></label>
                     		<input type="text" name="penulis" class="form-control form-control-sm @error('penulis') is-invalid @enderror" id="soft" placeholder="Masukan Penulis Buku" autocomplete="off" value="{{ old('penulis')}}">
                     		<div class="invalid-feedback">
         						@error('penulis')
@@ -89,7 +89,7 @@
       						</div>
 		                </div>
                 		<div class="form-group">
-                       		<label>Tipe Buku</label>
+                       		<label>Tipe Buku<span style="color: red;">*</span></label>
                         	<select class=" form-control form-control-sm" name="tipe">
                           		<option value="Other">Other</option>
                           		<option value="Modul" {{(old('tipe')=='Modul') ? 'selected' : ''}}>Modul</option>
@@ -116,15 +116,25 @@
                 			</div>
                 			
                 		</div> -->
-                		<div class="form-group">
-                    		<label for="lok">Lokasi Barang</label>
+                		<!-- <div class="form-group">
+                    		<label for="lok">Lokasi Barang<span style="color: red;">*</span></label>
                     		<input type="text" name="lok" class="form-control form-control-sm @error('lok') is-invalid @enderror" id="lok" placeholder="Barang Ingin Disimpan di ..." autocomplete="off" value="{{ old('lok')}}">
                     		<div class="invalid-feedback">
         						@error('lok')
         							{{$message}}
         						@enderror
       						</div>
-		                </div>
+		                </div> -->
+		                <div class="form-group">
+                       		<label>Lokasi Barang<span style="color: red;">*</span></label>
+                        	<select class="form-control form-control-sm" name="lok">
+                          		<!-- <option value="Other">Other</option> -->
+                          		<option value="LIK B Gedung B" {{(old('lok')=='LIK B Gedung B') ? 'selected' : ''}}>LIK B Gedung B</option>
+                          		<option value="LIK C Gedung B" {{(old('lok')=='LIK C Gedung B') ? 'selected' : ''}}>LIK C Gedung B</option>
+                          		<option value="LIK D Gedung B" {{(old('lok')=='LIK D Gedung B') ? 'selected' : ''}}>LIK D Gedung B</option>
+                          		<option value="Lab G8-G9 Gedung G" {{(old('lok')=='Lab G8-G9 Gedung G') ? 'selected' : ''}}>Lab G8-G9 Gedung G</option>
+                        	</select>
+                    	</div>
                 		<div class="form-group">
                         	<label>Keterangan</label>
                         <textarea class="form-control form-control-sm" rows="1" placeholder="Masukan Keterangan" name="ket" autocomplete="off" value="">{{ old('ket')}}</textarea>

@@ -23,11 +23,19 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
+                <div class="col-md-2">
                 <h3 class="card-title">Data License</h3>
-              </div>
+                </div>
+                <div class="input-group col-md-4 float-right">
+                  <input type="text" class="form-control form-control-sm" value="Cari...">
+                  <span class="input-group-btn">
+                  <button class="btn btn-primary btn-sm my-2 my-sm-0" type="button"><i class="fa fa-search"></i></button>
+                  </span>
+                </div>
+            </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example2" class="table table-bordered table-hover">
+                <table id="example2" class="table table-bordered table-hover table-sm table-responsive-sm text-center">
                   <thead>
                   <tr>
                     <th>No</th>
@@ -44,14 +52,14 @@
                   	<?php $no=1 ?>
                   	@foreach($license as $data)
                   <tr>
-                    <td>{{$no++}}</td>
-                    <td>{{$data->soft_name}}</td>
-                    <td>{{$data->license_key}}</td>
-                    <td>{{$data->exp_date}}</td>
-                    <td>{{$data->manufacturer}}</td>
-                    <td>{{$data->lcs_name}}</td>
-                    <td>{{$data->lcs_email}}</td>
-                    <td>
+                    <td class="align-middle">{{$no++}}</td>
+                    <td class="align-middle">{{$data->soft_name}}</td>
+                    <td class="align-middle">{{$data->license_key}}</td>
+                    <td class="align-middle">{{$data->exp_date}}</td>
+                    <td class="align-middle">{{$data->manufacturer}}</td>
+                    <td class="align-middle">{{$data->lcs_name}}</td>
+                    <td class="align-middle">{{$data->lcs_email}}</td>
+                    <td class="align-middle">
                     	<a href="/license/detail/{{$data->id_license}}" class="btn btn-sm btn-success">Detail</a>
                     	<a href="/license/edit/{{$data->id_license}}" class="btn btn-sm btn-warning">Update</a>
                     	<button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete{{$data->id_license}}">
@@ -64,6 +72,12 @@
                   <tfoot>
                   </tfoot>
                 </table>
+                Halaman {{ $license->currentPage() }} dari {{$license->lastPage()}} <br/>
+              Jumlah Data : {{ $license->total() }} <br/>
+              <!-- Data Per Halaman : {{ $license->perPage() }} <br/> -->
+ 
+ 
+              {{ $license->links() }}
               </div>
               <!-- /.card-body -->
             </div>

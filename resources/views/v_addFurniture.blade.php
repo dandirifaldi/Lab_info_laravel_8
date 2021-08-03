@@ -14,7 +14,7 @@
             	<div class="row">
                 	<div class="col-sm-6">
                 		<div class="form-group">
-                    		<label for="merk">Merk</label>
+                    		<label for="merk">Merk<span style="color: red;">*</span></label>
                     		<input type="text" name="merk" class="form-control form-control-sm @error('merk') is-invalid @enderror" id="merk" placeholder="Masukan Merk" autocomplete="off" value="{{ old('merk')}}">
                     		<div class="invalid-feedback">
         						@error('merk')
@@ -23,7 +23,7 @@
       						</div>
 		                </div>
 		            	<div class="form-group">
-                    		<label for="jumlah">Jumlah</label>
+                    		<label for="jumlah">Jumlah<span style="color: red;">*</span></label>
                     		<input type="number" class="form-control form-control-sm @error('jumlah') is-invalid @enderror" id="jumlah" placeholder="Masukan Jumlah " name="jumlah" autocomplete="off" value="{{ old('jumlah')}}">
                     		<div class="invalid-feedback">
         						@error('jumlah')
@@ -32,7 +32,7 @@
       						</div>
 		            	</div>
 		           		<div class="form-group">
-                 		 	<label>Tanggal Masuk </label>
+                 		 	<label>Tanggal Masuk <span style="color: red;">*</span></label>
                    		 	<div class="input-group date" id="tgl_masuk" data-target-input="nearest">
                         	<input type="date" class="form-control form-control-sm datetimepicker-input @error('tgl_masuk') is-invalid @enderror" data-target="#tgl_masuk"/ name="tgl_masuk" autocomplete="off" value="{{ old('tgl_masuk')}}">
                         	<div class="input-group-append" data-target="#tgl_masuk" data-toggle="datetimepicker">
@@ -71,7 +71,7 @@
 
                 	<div class="col-sm-6">
                 		<div class="form-group">
-                       		<label>Kategori</label>
+                       		<label>Kategori<span style="color: red;">*</span></label>
                         	<select class=" form-control form-control-sm" name="category">
                           		<option value="Other">Other</option>
                           		<option value="Meja" {{(old('category')=='Meja') ? 'selected' : ''}}>Meja</option>
@@ -98,15 +98,25 @@
                 			</div>
                 			
                 		</div> -->
-                		<div class="form-group">
-                    		<label for="lok">Lokasi Barang</label>
+                		<!-- <div class="form-group">
+                    		<label for="lok">Lokasi Barang<span style="color: red;">*</span></label>
                     		<input type="text" name="lok" class="form-control form-control-sm @error('lok') is-invalid @enderror" id="lok" placeholder="Barang Ingin Disimpan di ..." autocomplete="off" value="{{ old('lok')}}">
                     		<div class="invalid-feedback">
         						@error('lok')
         							{{$message}}
         						@enderror
       						</div>
-		                </div>
+		                </div> -->
+		                <div class="form-group">
+                       		<label>Lokasi Barang<span style="color: red;">*</span></label>
+                        	<select class="form-control form-control-sm" name="lok">
+                          		<!-- <option value="Other">Other</option> -->
+                          		<option value="LIK B Gedung B" {{(old('lok')=='LIK B Gedung B') ? 'selected' : ''}}>LIK B Gedung B</option>
+                          		<option value="LIK C Gedung B" {{(old('lok')=='LIK C Gedung B') ? 'selected' : ''}}>LIK C Gedung B</option>
+                          		<option value="LIK D Gedung B" {{(old('lok')=='LIK D Gedung B') ? 'selected' : ''}}>LIK D Gedung B</option>
+                          		<option value="Lab G8-G9 Gedung G" {{(old('lok')=='Lab G8-G9 Gedung G') ? 'selected' : ''}}>Lab G8-G9 Gedung G</option>
+                        	</select>
+                    	</div>
                 		<div class="form-group">
                         	<label>Keterangan</label>
                         <textarea class="form-control form-control-sm" rows="1" placeholder="Masukan Keterangan" name="ket" autocomplete="off" value="">{{ old('ket')}}</textarea>

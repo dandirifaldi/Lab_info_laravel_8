@@ -20,7 +20,7 @@
             	<div class="row">
                 	<div class="col-sm-6">
                 		<div class="form-group">
-                    		<label for="serial">Serial Number</label>
+                    		<label for="serial">Serial Number<span style="color: red;">*</span></label>
                     		<input type="text" name="serial" class="form-control form-control-sm @error('serial') is-invalid @enderror" id="serial" placeholder="Masukan Serial Number" autocomplete="off" value="{{ old('serial')}}">
                     		<div class="invalid-feedback">
         						@error('serial')
@@ -29,7 +29,7 @@
       						</div>
 		                </div>
                   		<div class="form-group">
-                    		<label for="tipe">Tipe</label>
+                    		<label for="tipe">Tipe<span style="color: red;">*</span></label>
                     		<input type="text" class="form-control form-control-sm @error('tipe') is-invalid @enderror" id="tipe" placeholder="Masukan Tipe Barang" name="tipe" autocomplete="off" value="{{ old('tipe')}}">
                     		<div class="invalid-feedback">
         						@error('tipe')
@@ -38,7 +38,7 @@
       						</div>
 		            	</div>
 		                <div class="form-group">
-                       		<label>Kategori Barang</label>
+                       		<label>Kategori Barang<span style="color: red;">*</span></label>
                         	<select class="form-control form-control-sm" name="category">
                           		<option value="Other">Other</option>
                           		<option value="Mouse" {{(old('category')=='Mouse') ? 'selected' : ''}}>Mouse</option>
@@ -52,7 +52,7 @@
                         	</select>
                     	</div>
 		           		<div class="form-group">
-                 		 	<label>Tanggal Masuk </label>
+                 		 	<label>Tanggal Masuk <span style="color: red;">*</span></label>
                    		 	<div class="input-group date" id="tgl_masuk" data-target-input="nearest">
                         	<input type="date" class="form-control form-control-sm datetimepicker-input @error('tgl_masuk') is-invalid @enderror" data-target="#tgl_masuk"/ name="tgl_masuk" autocomplete="off" value="{{ old('tgl_masuk')}}">
                         	<div class="input-group-append" data-target="#tgl_masuk" data-toggle="datetimepicker">
@@ -91,7 +91,7 @@
 
                 	<div class="col-sm-6">
                 		<div class="form-group">
-                    		<label for="merk">Merk Barang</label>
+                    		<label for="merk">Merk Barang<span style="color: red;">*</span></label>
                     		<input type="text" name="merk" class="form-control form-control-sm @error('merk') is-invalid @enderror" id="soft" placeholder="Masukan Merk Barang" autocomplete="off" value="{{ old('merk')}}">
                     		<div class="invalid-feedback">
         						@error('merk')
@@ -110,7 +110,7 @@
       						</div>
 		            	</div> -->
 		            	<div class="form-group">
-               			 	<label>Harga </label>
+               			 	<label>Harga <span style="color: red;">*</span></label>
                			 	<div class="input-group input-group-sm">
                   				<div class="input-group-prepend">
                     				<span class="input-group-text">Rp</span>
@@ -127,15 +127,25 @@
                 			</div>
                 			
                 		</div>
-                		<div class="form-group">
-                    		<label for="lok">Lokasi Barang</label>
+                		<!-- <div class="form-group">
+                    		<label for="lok">Lokasi Barang<span style="color: red;">*</span></label>
                     		<input type="text" name="lok" class="form-control form-control-sm @error('lok') is-invalid @enderror" id="lok" placeholder="Barang Ingin Disimpan di ..." autocomplete="off" value="{{ old('lok')}}">
                     		<div class="invalid-feedback">
         						@error('lok')
         							{{$message}}
         						@enderror
       						</div>
-		                </div>
+		                </div> -->
+		                <div class="form-group">
+                       		<label>Lokasi Barang<span style="color: red;">*</span></label>
+                        	<select class="form-control form-control-sm" name="lok">
+                          		<!-- <option value="Other">Other</option> -->
+                          		<option value="LIK B Gedung B" {{(old('lok')=='LIK B Gedung B') ? 'selected' : ''}}>LIK B Gedung B</option>
+                          		<option value="LIK C Gedung B" {{(old('lok')=='LIK C Gedung B') ? 'selected' : ''}}>LIK C Gedung B</option>
+                          		<option value="LIK D Gedung B" {{(old('lok')=='LIK D Gedung B') ? 'selected' : ''}}>LIK D Gedung B</option>
+                          		<option value="Lab G8-G9 Gedung G" {{(old('lok')=='Lab G8-G9 Gedung G') ? 'selected' : ''}}>Lab G8-G9 Gedung G</option>
+                        	</select>
+                    	</div>
                 		<div class="form-group">
                         	<label>Keterangan</label>
                         <textarea class="form-control form-control-sm" rows="1" placeholder="Masukan Keterangan" name="ket" autocomplete="off" value="">{{ old('ket')}}</textarea>
@@ -149,7 +159,7 @@
             		<!-- <div class="row"> -->
             			<!-- <div class="col-sm-6"> -->
             				<div class="form-group">
-                    			<label for="toko">Nama Toko</label>
+                    			<label for="toko">Nama Toko<span style="color: red;">*</span></label>
                     			<input type="text" class="form-control form-control-sm @error('toko') is-invalid @enderror" id="toko" placeholder="Masukan Nama Toko" name="toko" autocomplete="off" value="{{ old('toko')}}">
                     			<div class="invalid-feedback">
         						@error('toko')

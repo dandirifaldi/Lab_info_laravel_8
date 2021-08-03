@@ -9,7 +9,7 @@ use Illuminate\Support\Carbon;
 class LicenseModel extends Model
 {
    public function allData(){
-    return DB::table('tb_license')->get();
+    return DB::table('tb_license')->paginate(10);
    }
 
    public function detailData($id_license){

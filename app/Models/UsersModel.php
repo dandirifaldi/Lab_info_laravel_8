@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class UsersModel extends Model
 {
     public function allData(){
-    return DB::table('users')->get();
+    return DB::table('users')->paginate(10);
    }
 
    public function detailData($id){

@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
-class BarangModel extends Model
+class NewwModel extends Model
 {
     public function allData(){
         return DB::table('tb_barang')
+        ->whereDate('tb_barang.tgl_masuk','<=',Carbon::now()->addDays(29))
         ->Join('tb_status','tb_barang.id_status','=','tb_status.id_status')
+        ->orderBy('tb_barang.tgl_masuk','desc')
         ->paginate(10);
    }
    public function allDatad(){
@@ -54,16 +56,13 @@ class BarangModel extends Model
          ->where('id_barang',$id_barang)
          ->delete();
    }
-   public function editDataStatus($id_barang, $data)
-   {
-      DB::table('tb_barang')
-         ->whereIn('id_barang',$id_barang)
-         ->update($data);
-   }
+
    // BUKU----------------------------------------------------------------------------------------------
     public function allDataBuku(){
         return DB::table('tb_buku')
+        ->whereDate('tb_buku.tgl_masuk','<=',Carbon::now()->addDays(29))
         ->leftJoin('tb_status','tb_buku.id_status','=','tb_status.id_status')
+        ->orderBy('tb_buku.tgl_masuk','desc')
         ->paginate(10);
    }
     public function addDataBuku($data){
@@ -89,7 +88,9 @@ class BarangModel extends Model
    // FURNITURE-----------------------------------------------------------------------------------------
     public function allDataFurniture(){
         return DB::table('tb_furniture')
+        ->whereDate('tb_furniture.tgl_masuk','<=',Carbon::now()->addDays(29))
         ->leftJoin('tb_status','tb_furniture.id_status','=','tb_status.id_status')
+        ->orderBy('tb_furniture.tgl_masuk','desc')
         ->paginate(10);
    }
     public function addDataFurniture($data){

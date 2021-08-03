@@ -9,7 +9,7 @@
 </ul>
 <div class="tab-content">
 <div id="hard" class="tab-pane active fade show ">
-	<div class="container-fluid">
+  <div class="container-fluid">
     <br>
     <div class="row mb-2">
       <div class="col-sm-2">
@@ -85,8 +85,8 @@
                   </tr>
                   </thead>
                   <tbody>
-                  	<?php $no=1 ?>
-                  	@foreach($barang as $data)
+                    <?php $no=1 ?>
+                    @foreach($barang as $data)
                   <tr>
                     <td class="align-middle"><input type="checkbox" class="checkBoxClass" value="{{$data->id_barang}}"></td>
                     <td class="align-middle">{{$no++}}</td>
@@ -99,9 +99,9 @@
                     <td class="align-middle">{{$data->tgl_masuk}}</td>
                     <td class="align-middle">{{$data->status}}</td>
                     <td class="align-middle">
-                    	<a href="/barang/detail/{{$data->id_barang}}" class="btn btn-sm btn-success">Detail</a>
-                    	<a href="/barang/edit/{{$data->id_barang}}" class="btn btn-sm btn-warning">Update</a>
-                    	<button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete{{$data->id_barang}}">
+                      <a href="/barang/detail/{{$data->id_barang}}" class="btn btn-sm btn-success">Detail</a>
+                      <a href="/barang/edit/{{$data->id_barang}}" class="btn btn-sm btn-warning">Update</a>
+                      <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete{{$data->id_barang}}">
                   Delete
                 </button>
                     </td>

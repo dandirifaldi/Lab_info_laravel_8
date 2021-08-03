@@ -1,5 +1,5 @@
 @extends('layout.v_template')
-@section('title','All Items')
+@section('title','Good Items')
 
 @section('content')
 <ul class="nav nav-tabs">
@@ -9,29 +9,9 @@
 </ul>
 <div class="tab-content">
 <div id="hard" class="tab-pane active fade show ">
-	<div class="container-fluid">
+  <div class="container-fluid">
     <br>
-    <div class="row mb-2">
-      <div class="col-sm-2">
-    <a href="/barang/add" class="btn btn-sm btn-primary">Tambah Barang</a></div>
-    <div class="col-sm-9">
-    <form action="/barang/update_status" method="post" id="form_perintah" class="form-inline">
-      @csrf
-      <div class="form-group from-inline">
-      <select id="select-perintah" class="form-control form-control-sm" name="perintah">
-        <option value="bagus">Bagus</option>
-        <option value="maintenance">Maintenance</option>
-        <option value="rusak">Rusak</option>
-      </select>
-    <!-- <button type="submit" class="btn btn-success btn-sm" disabled id="pilih-perintah" onclick="" style="display:inline;">Pindah</button> -->
-    <button type="button" class="btn btn-sm btn-success mr-1" disabled id="pilih-perintah" onclick="btn_perintah_maintenance()" style="display:inline;">Pilih</buttton>
-    </div>
-    </form>
-    <!-- <button type="button" class="btn btn-sm btn-outline-success mr-1" disabled id="pilih-perintah3" onclick="btn_perintah_bagus()" style="display:inline;">Update Bagus</buttton> -->
-    <!-- <button type="button" class="btn btn-sm btn-outline-danger mr-1" disabled id="pilih-perintah2" onclick="btn_perintah_rusak()" style="display:inline;">Update Rusak</buttton> -->
-  </div>
-  </div>
-
+    <a href="/barang/add" class="btn btn-sm btn-primary">Tambah Barang</a><br><br>
     @if (session('pesanTambah'))
       <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Sukses!!</strong> Data Berhasil Ditambahkan.
@@ -54,18 +34,13 @@
                 <div class="col-md-2">
                 <h3 class="card-title">Data Barang</h3>
                 </div>
-                <div class="col-md-3 float-right">
-                  <form action="/barang/search" method="get" class="form-inline">
-                    <div class="form-group">
-                  <input type="text" class="form-control form-control-sm" value="{{old('cari')}}" name="cari" placeholder="Cari...">
-                  <!-- <span class="input-group-btn"> -->
-                  <button class="btn btn-primary btn-sm my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
-                  <!-- </span> -->
-              </div>
-                </form>
+                <div class="input-group col-md-4 float-right">
+                  <input type="text" class="form-control form-control-sm" value="Cari...">
+                  <span class="input-group-btn">
+                  <button class="btn btn-primary btn-sm my-2 my-sm-0" type="button"><i class="fa fa-search"></i></button>
+                  </span>
                 </div>
             </div>
-              
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example2" class="table table-bordered table-hover table-sm table-responsive-sm text-center">
@@ -85,8 +60,8 @@
                   </tr>
                   </thead>
                   <tbody>
-                  	<?php $no=1 ?>
-                  	@foreach($barang as $data)
+                    <?php $no=1 ?>
+                    @foreach($barang as $data)
                   <tr>
                     <td class="align-middle"><input type="checkbox" class="checkBoxClass" value="{{$data->id_barang}}"></td>
                     <td class="align-middle">{{$no++}}</td>
@@ -99,9 +74,9 @@
                     <td class="align-middle">{{$data->tgl_masuk}}</td>
                     <td class="align-middle">{{$data->status}}</td>
                     <td class="align-middle">
-                    	<a href="/barang/detail/{{$data->id_barang}}" class="btn btn-sm btn-success">Detail</a>
-                    	<a href="/barang/edit/{{$data->id_barang}}" class="btn btn-sm btn-warning">Update</a>
-                    	<button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete{{$data->id_barang}}">
+                      <a href="/barang/detail/{{$data->id_barang}}" class="btn btn-sm btn-success">Detail</a>
+                      <a href="/barang/edit/{{$data->id_barang}}" class="btn btn-sm btn-warning">Update</a>
+                      <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete{{$data->id_barang}}">
                   Delete
                 </button>
                     </td>
@@ -111,7 +86,7 @@
                   <tfoot>
                   </tfoot>
                 </table>
-              Halaman {{ $barang->currentPage() }} dari {{$barang->lastPage()}} <br/>
+              Halaman {{ $barang->currentPage() }} dari {{$buku->lastPage()}} <br/>
               Jumlah Data : {{ $barang->total() }} <br/>
               <!-- Data Per Halaman : {{ $barang->perPage() }} <br/> -->
  
@@ -157,29 +132,7 @@
 <div id="buku" class="tab-pane fade show">
        <div class="container-fluid">
     <br>
-    <!-- <a href="/barang/addBuku" class="btn btn-sm btn-primary">Tambah Buku</a><br><br> -->
-    <div class="row mb-2">
-      <div class="col-sm-2">
-    <a href="/barang/add" class="btn btn-sm btn-primary">Tambah Buku</a></div>
-    <div class="col-sm-9">
-    <form action="/buku/update_status" method="post" id="form_perintah" class="form-inline">
-      @csrf
-      <div class="form-group from-inline">
-      <select id="select-perintah" class="form-control form-control-sm" name="perintah">
-        <option value="bagus">Bagus</option>
-        <option value="maintenance">Maintenance</option>
-        <option value="rusak">Rusak</option>
-      </select>
-    <!-- <button type="submit" class="btn btn-success btn-sm" disabled id="pilih-perintah" onclick="" style="display:inline;">Pindah</button> -->
-    <button type="button" class="btn btn-sm btn-success mr-1" disabled id="pilih-perintah" onclick="btn_perintah_maintenance()" style="display:inline;">Pilih</buttton>
-    </div>
-    </form>
-    <!-- <button type="button" class="btn btn-sm btn-outline-success mr-1" disabled id="pilih-perintah3" onclick="btn_perintah_bagus()" style="display:inline;">Update Bagus</buttton> -->
-    <!-- <button type="button" class="btn btn-sm btn-outline-danger mr-1" disabled id="pilih-perintah2" onclick="btn_perintah_rusak()" style="display:inline;">Update Rusak</buttton> -->
-  </div>
-  </div>
-
-
+    <a href="/barang/addBuku" class="btn btn-sm btn-primary">Tambah Buku</a><br><br>
     @if (session('pesanTambah'))
       <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Sukses!!</strong> Data Berhasil Ditambahkan.
@@ -202,15 +155,11 @@
                 <div class="col-md-2">
                 <h3 class="card-title">Data Buku</h3>
                 </div>
-                <div class="col-md-3 float-right">
-                  <form action="/barang/searchBuku" method="get" class="form-inline">
-                    <div class="form-group">
-                  <input type="text" class="form-control form-control-sm" value="{{old('cari')}}" name="cari" placeholder="Cari...">
-                  <!-- <span class="input-group-btn"> -->
-                  <button class="btn btn-primary btn-sm my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
-                  <!-- </span> -->
-              </div>
-                </form>
+                <div class="input-group col-md-4 float-right">
+                  <input type="text" class="form-control form-control-sm" value="Cari...">
+                  <span class="input-group-btn">
+                  <button class="btn btn-primary btn-sm my-2 my-sm-0" type="button"><i class="fa fa-search"></i></button>
+                  </span>
                 </div>
             </div>
               <!-- /.card-header -->
@@ -236,16 +185,16 @@
                     @foreach($buku as $data1)
                   <tr>
                     <td class="align-middle"><input type="checkbox" class="checkBoxBook" value="{{$data1->id_buku}}"></td>
-                    <td>{{$no1++}}</td>
-                    <!-- <td>{{$data1->id_buku}}</td> -->
-                    <td>{{$data1->judul}}</td>
-                    <td>{{$data1->penulis}}</td>
-                    <td>{{$data1->tahun}}</td>
-                    <td>{{$data1->tipe}}</td>
-                    <td>{{$data1->kondisi}}</td>
-                    <td>{{$data1->tgl_masuk}}</td>
-                    <td>{{$data1->status}}</td>
-                    <td>
+                    <td class="align-middle">{{$no1++}}</td>
+                    <!-- <td class="align-middle">{{$data1->id_buku}}</td> -->
+                    <td class="align-middle">{{$data1->judul}}</td>
+                    <td class="align-middle">{{$data1->penulis}}</td>
+                    <td class="align-middle">{{$data1->tahun}}</td>
+                    <td class="align-middle">{{$data1->tipe}}</td>
+                    <td class="align-middle">{{$data1->kondisi}}</td>
+                    <td class="align-middle">{{$data1->tgl_masuk}}</td>
+                    <td class="align-middle">{{$data1->status}}</td>
+                    <td class="align-middle">
                       <a href="/barang/detailBuku/{{$data1->id_buku}}" class="btn btn-sm btn-success">Detail</a>
                       <a href="/barang/editBuku/{{$data1->id_buku}}" class="btn btn-sm btn-warning">Update</a>
                       <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete{{$data1->id_buku}}">
@@ -302,29 +251,7 @@
 <div id="furniture" class="tab-pane fade show">
 <div class="container-fluid">
     <br>
-    <!-- <a href="/barang/addFurniture" class="btn btn-sm btn-primary">Tambah Barang</a><br><br> -->
-    <div class="row mb-2">
-      <div class="col-sm-2">
-    <a href="/barang/add" class="btn btn-sm btn-primary">Tambah Barang</a></div>
-    <div class="col-sm-9">
-    <form action="/barang/update_status" method="post" id="form_perintah" class="form-inline">
-      @csrf
-      <div class="form-group from-inline">
-      <select id="select-perintah" class="form-control form-control-sm" name="perintah">
-        <option value="bagus">Bagus</option>
-        <option value="maintenance">Maintenance</option>
-        <option value="rusak">Rusak</option>
-      </select>
-    <!-- <button type="submit" class="btn btn-success btn-sm" disabled id="pilih-perintah" onclick="" style="display:inline;">Pindah</button> -->
-    <button type="button" class="btn btn-sm btn-success mr-1" disabled id="pilih-perintah" onclick="btn_perintah_maintenance()" style="display:inline;">Pilih</buttton>
-    </div>
-    </form>
-    <!-- <button type="button" class="btn btn-sm btn-outline-success mr-1" disabled id="pilih-perintah3" onclick="btn_perintah_bagus()" style="display:inline;">Update Bagus</buttton> -->
-    <!-- <button type="button" class="btn btn-sm btn-outline-danger mr-1" disabled id="pilih-perintah2" onclick="btn_perintah_rusak()" style="display:inline;">Update Rusak</buttton> -->
-  </div>
-  </div>
-
-    
+    <a href="/barang/addFurniture" class="btn btn-sm btn-primary">Tambah Barang</a><br><br>
     @if (session('pesanTambah'))
       <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Sukses!!</strong> Data Berhasil Ditambahkan.
@@ -347,15 +274,11 @@
                 <div class="col-md-2">
                 <h3 class="card-title">Data Barang Furniture</h3>
                 </div>
-                <div class="col-md-3 float-right">
-                  <form action="/barang/searchFurniture" method="get" class="form-inline">
-                    <div class="form-group">
-                  <input type="text" class="form-control form-control-sm" value="{{old('cari')}}" name="cari" placeholder="Cari...">
-                  <!-- <span class="input-group-btn"> -->
-                  <button class="btn btn-primary btn-sm my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
-                  <!-- </span> -->
-              </div>
-                </form>
+                <div class="input-group col-md-4 float-right">
+                  <input type="text" class="form-control form-control-sm" value="Cari...">
+                  <span class="input-group-btn">
+                  <button class="btn btn-primary btn-sm my-2 my-sm-0" type="button"><i class="fa fa-search"></i></button>
+                  </span>
                 </div>
             </div>
               <!-- /.card-header -->
@@ -379,14 +302,14 @@
                     @foreach($furniture as $data2)
                   <tr>
                     <td class="align-middle"><input type="checkbox" class="checkBoxFurniture" value="{{$data2->id_furniture}}"></td>
-                    <td>{{$no2++}}</td>
-                    <!-- <td>{{$data2->id_furniture}}</td> -->
-                    <td>{{$data2->merk}}</td>
-                    <td>{{$data2->category}}</td>
-                    <td>{{$data2->kondisi}}</td>
-                    <td>{{$data2->tgl_masuk}}</td>
-                    <td>{{$data2->status}}</td>
-                    <td>
+                    <td class="align-middle">{{$no2++}}</td>
+                    <!-- <td class="align-middle">{{$data2->id_furniture}}</td> -->
+                    <td class="align-middle">{{$data2->merk}}</td>
+                    <td class="align-middle">{{$data2->category}}</td>
+                    <td class="align-middle">{{$data2->kondisi}}</td>
+                    <td class="align-middle">{{$data2->tgl_masuk}}</td>
+                    <td class="align-middle">{{$data2->status}}</td>
+                    <td class="align-middle">
                       <a href="/barang/detailFurniture/{{$data2->id_furniture}}" class="btn btn-sm btn-success">Detail</a>
                       <a href="/barang/editFurniture/{{$data2->id_furniture}}" class="btn btn-sm btn-warning">Update</a>
                       <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete{{$data2->id_furniture}}">

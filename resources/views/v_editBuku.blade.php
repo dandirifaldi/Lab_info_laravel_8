@@ -14,7 +14,7 @@
             	<div class="row">
                 	<div class="col-sm-6">
                 		<div class="form-group">
-                    		<label for="judul">Judul</label>
+                    		<label for="judul">Judul<span style="color: red;">*</span></label>
                     		<input type="text" name="judul" class="form-control form-control-sm @error('judul') is-invalid @enderror" id="judul" placeholder="Masukan Judul Buku" autocomplete="off" value="{{ $buku->judul}}">
                     		<div class="invalid-feedback">
         						@error('judul')
@@ -23,7 +23,7 @@
       						</div>
 		                </div>
                   		<div class="form-group">
-                    		<label for="tahun">Tahun</label>
+                    		<label for="tahun">Tahun<span style="color: red;">*</span></label>
                     		<input type="text" class="form-control form-control-sm @error('tahun') is-invalid @enderror" id="tahun" placeholder="Masukan Tahun " name="tahun" autocomplete="off" value="{{ $buku->tahun}}">
                     		<div class="invalid-feedback">
         						@error('tahun')
@@ -32,7 +32,7 @@
       						</div>
 		            	</div>
 		            	<div class="form-group">
-                    		<label for="jumlah">Jumlah Buku</label>
+                    		<label for="jumlah">Jumlah Buku<span style="color: red;">*</span></label>
                     		<input type="number" class="form-control form-control-sm @error('jumlah') is-invalid @enderror" id="jumlah" placeholder="Masukan Jumlah Buku" name="jumlah" autocomplete="off" value="{{ $buku->jumlah_buku}}">
                     		<div class="invalid-feedback">
         						@error('jumlah')
@@ -41,7 +41,7 @@
       						</div>
 		            	</div>
 		           		<div class="form-group">
-                 		 	<label>Tanggal Masuk </label>
+                 		 	<label>Tanggal Masuk <span style="color: red;">*</span></label>
                    		 	<div class="input-group date" id="tgl_masuk" data-target-input="nearest">
                         	<input type="date" class="form-control form-control-sm datetimepicker-input @error('tgl_masuk') is-invalid @enderror" data-target="#tgl_masuk"/ name="tgl_masuk" autocomplete="off" value="{{ $buku->tgl_masuk}}">
                         	<div class="input-group-append" data-target="#tgl_masuk" data-toggle="datetimepicker">
@@ -117,7 +117,7 @@
                 			
                 		</div> -->
                 		<div class="form-group">
-                    		<label for="lok">Lokasi Barang</label>
+                    		<label for="lok">Lokasi Barang<span style="color: red;">*</span></label>
                     		<input type="text" name="lok" class="form-control form-control-sm @error('lok') is-invalid @enderror" id="lok" placeholder="Barang Ingin Disimpan di ..." autocomplete="off" value="{{ $buku->lokasi}}">
                     		<div class="invalid-feedback">
         						@error('lok')
